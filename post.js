@@ -1,4 +1,5 @@
-let postId = window.location.search.split('?')[1];
+let params = new URL(location).searchParams
+let postId = params.get("postId")
 fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
     .then(post => post.json())
     .then(post => {

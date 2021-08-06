@@ -27,7 +27,7 @@ fetch('https://jsonplaceholder.typicode.com/users')
         detailInfo.style.border = '#043434 2px solid';
 
         nextPage.innerHTML = 'detail info';
-        nextPage.href = `user-details.html?${user.id}`;
+        nextPage.href = `user-details.html?userId=${user.id}`;
         nextPage.style.textDecoration = 'none';
         nextPage.style.color = 'black';
         mainDiv.append(userDiv);

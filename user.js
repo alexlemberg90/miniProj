@@ -1,4 +1,5 @@
-let id = window.location.search.split('?')[1];
+let params = new URL(location).searchParams
+let id = params.get("userId")
 fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
 .then(value => value.json())
 .then(value => {
@@ -56,7 +57,7 @@ bs : ${value.company.bs}<br>
 
                     postDiv.innerHTML = `Post - ${post.title}`;
                     nextPage.innerText = 'Post details';
-                    nextPage.href = `post-details.html?${post.id}`;
+                    nextPage.href = `post-details.html?postId=${post.id}`;
                     nextPage.style.textDecoration = 'none';
                     nextPage.style.color = 'black';
                     nextPage.style.margin = '10px';
