@@ -8,6 +8,7 @@ fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
     userDiv.style.display = 'flex';
     userDiv.style.flexWrap = 'wrap';
     userDiv.style.textAlign = 'center';
+    userDiv.style.justifyContent = 'center';
 
     userDiv.innerHTML =
         `<h4 style="background: limegreen; width: 100%">
@@ -42,9 +43,10 @@ bs : ${value.company.bs}<br>
     userPosts.style.backgroundColor = '#d1f63e';
     document.body.append(userDiv);
     userDiv.append(userPosts);
-    userPosts.style. width = '18%';
+    userPosts.style. width = '90%';
     userPosts.style.border = '3px #f8ed17 solid';
-    userPosts.style.margin = '10px';
+
+
 
     userPosts.onclick = () => {
         fetch(`https://jsonplaceholder.typicode.com/users/${id}/posts`)

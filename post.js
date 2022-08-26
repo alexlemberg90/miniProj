@@ -29,7 +29,8 @@ fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
                                             </p>`
                     postDiv.append(commentDiv);
                     commentDiv.style.backgroundColor = '#0d5469';
-                    commentDiv.style.width = '17%';
+                    commentDiv.style.width = '24%';
+                    commentDiv.style.marginBottom = `10px`;
                     commentDiv.style.border = '3px solid #04272f';
 
 
