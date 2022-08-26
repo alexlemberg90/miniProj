@@ -1,17 +1,17 @@
 let params = new URL(location).searchParams
 let id = params.get("userId")
 fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
-.then(value => value.json())
-.then(value => {
-    let userDiv = document.createElement('div');
-    let userPosts = document.createElement('button');
-    userDiv.style.display = 'flex';
-    userDiv.style.flexWrap = 'wrap';
-    userDiv.style.textAlign = 'center';
-    userDiv.style.justifyContent = 'center';
+    .then(value => value.json())
+    .then(value => {
+        let userDiv = document.createElement('div');
+        let userPosts = document.createElement('button');
+        userDiv.style.display = 'flex';
+        userDiv.style.flexWrap = 'wrap';
+        userDiv.style.textAlign = 'center';
+        userDiv.style.justifyContent = 'center';
 
-    userDiv.innerHTML =
-        `<h4 style="background: limegreen; width: 100%">
+        userDiv.innerHTML =
+            `<h4 style="background: limegreen; width: 100%">
 Name : ${value.name}<br>
 Username : ${value.username} <br>
 Email : ${value.email} <br>
@@ -39,44 +39,43 @@ catchPhrase : ${value.company.catchPhrase}<br>
 bs : ${value.company.bs}<br>
 </h5>
 </h4>`;
-    userPosts.innerHTML = 'post of current user';
-    userPosts.style.backgroundColor = '#d1f63e';
-    document.body.append(userDiv);
-    userDiv.append(userPosts);
-    userPosts.style. width = '90%';
-    userPosts.style.border = '3px #f8ed17 solid';
+        userPosts.innerHTML = 'post of current user';
+        userPosts.style.backgroundColor = '#d1f63e';
+        document.body.append(userDiv);
+        userDiv.append(userPosts);
+        userPosts.style.width = '90%';
+        userPosts.style.border = '3px #f8ed17 solid';
 
 
+        userPosts.onclick = () => {
+            fetch(`https://jsonplaceholder.typicode.com/users/${id}/posts`)
+                .then(posts => posts.json())
+                .then(posts => {
+                    for (let post of posts) {
+                        let postDiv = document.createElement('div');
+                        let postTitle = document.createElement('button');
+                        const nextPage = document.createElement('a');
 
-    userPosts.onclick = () => {
-        fetch(`https://jsonplaceholder.typicode.com/users/${id}/posts`)
-            .then(posts => posts.json())
-            .then(posts => {
-                for (let post of posts) {
-                    let postDiv = document.createElement('div');
-                    let postTitle = document.createElement('button');
-                    const nextPage = document.createElement('a');
-
-                    postDiv.innerHTML = `Post - ${post.title}`;
-                    nextPage.innerText = 'Post details';
-                    nextPage.href = `post-details.html?postId=${post.id}`;
-                    nextPage.style.textDecoration = 'none';
-                    nextPage.style.color = 'black';
-                    nextPage.style.margin = '10px';
-                    postTitle.append(nextPage);
-                    userDiv.append(postDiv);
-                    postDiv.append(postTitle);
-                    postTitle.style.backgroundColor = '#f6f34f';
-                    postDiv.style.backgroundColor = '#d0f15c';
-                    postDiv.style.width = '17%';
-                    postDiv.style.border = '9px yellow solid';
-                    postDiv.style.display = 'flex';
-                    postDiv.style.margin = '10px';
-
-
-                }
+                        postDiv.innerHTML = `Post - ${post.title}`;
+                        nextPage.innerText = 'Post details';
+                        nextPage.href = `post-details.html?postId=${post.id}`;
+                        nextPage.style.textDecoration = 'none';
+                        nextPage.style.color = 'black';
+                        nextPage.style.margin = '10px';
+                        postTitle.append(nextPage);
+                        userDiv.append(postDiv);
+                        postDiv.append(postTitle);
+                        postTitle.style.backgroundColor = '#f6f34f';
+                        postDiv.style.backgroundColor = '#d0f15c';
+                        postDiv.style.width = '17%';
+                        postDiv.style.border = '9px yellow solid';
+                        postDiv.style.display = 'flex';
+                        postDiv.style.margin = '10px';
 
 
-            });
-    }
-})
+                    }
+
+
+                });
+        }
+    })
